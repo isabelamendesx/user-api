@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+
+ARG TARGETARCH
+ARG TARGETPLATFORM
+ENV PATH_APP=/app/${TARGETPLATFORM}
+
+COPY ${TARGETPLATFORM}/. ${PATH_APP}/
+
+WORKDIR ${PATH_APP}
+
+EXPOSE 80
+
+ENTRYPOINT ["dotnet", "WebApi.dll"]
