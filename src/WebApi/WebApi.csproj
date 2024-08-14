@@ -7,6 +7,7 @@
     <UserSecretsId>0f2d72b0-cb30-4ce9-9df3-e2a0d7a86173</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <RootNamespace>Users.WebApi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
