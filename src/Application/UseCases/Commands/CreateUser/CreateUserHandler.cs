@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Users.Domain.Aggregates.UserAggregate;
 using Users.Domain.Aggregates.UserAggregate.Entities;
+using Users.Domain.Common;
 using Users.Domain.ValueObjects;
 
 namespace Users.Application.UseCases.Commands.CreateUser;
@@ -8,10 +9,12 @@ namespace Users.Application.UseCases.Commands.CreateUser;
 public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateUserResponse>
 {
     private readonly IUserRepository _userRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public CreateUserHandler(IUserRepository userRepository)
+    public CreateUserHandler(IUserRepository userRepository, IUnitOfWork unitOfWork = null)
     {
         _userRepository = userRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<CreateUserResponse> Handle(CreateUserCommand command, CancellationToken cancellationToken)
@@ -21,6 +24,7 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateUserRe
 
         var user = CreateUser(command);
         await _userRepository.AddAsync(user, cancellationToken);
+        await _unitOfWork.CommitAsync(cancellationToken);
         return new CreateUserResponse(user.Id);
     }
     private static User CreateUser(CreateUserCommand command)

@@ -1,15 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Users.Domain.Common;
+using Users.Infrastructure.EntityFramework.Context;
 
-namespace Users.Infrastructure.Persistence;
+namespace Users.Infrastructure.Persistence.Repositories;
 
 public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : Entity, IAggregateRoot
 {
-    protected readonly DbContext _context;
+    protected readonly UserDbContext _context;
     private readonly DbSet<TEntity> _dbSet;
 
-    public BaseRepository(DbContext dbContext)
+    public BaseRepository(UserDbContext dbContext)
     {
         _context = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _dbSet = _context.Set<TEntity>();

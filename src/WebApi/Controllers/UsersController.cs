@@ -5,7 +5,7 @@ using Users.Application.UseCases.Commands.CreateUser;
 namespace WebApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("users")]
 public class UsersController : ControllerBase
 {
     private readonly ILogger<UsersController> _logger;
