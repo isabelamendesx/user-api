@@ -13,9 +13,9 @@ public static class DependencyInjection
     internal static IServiceCollection AddEFCore(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
-        services.AddDbContext<IUnitOfWork, UserDbContext>((sp, options) =>
+        services.AddDbContext<IUnitOfWork, UserDbContext>( options =>
         {
-            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>())
+            options
             .UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
 

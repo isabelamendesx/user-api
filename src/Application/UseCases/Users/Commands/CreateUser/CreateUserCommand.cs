@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Users.Application.UseCases.Commands.CreateUser;
+namespace Users.Application.UseCases.Users.Commands.CreateUser;
 
 public sealed record CreateUserCommand : IRequest<CreateUserResponse>
 {

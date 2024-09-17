@@ -4,14 +4,14 @@ using Users.Domain.Aggregates.UserAggregate.Entities;
 using Users.Domain.Common;
 using Users.Domain.ValueObjects;
 
-namespace Users.Application.UseCases.Commands.CreateUser;
+namespace Users.Application.UseCases.Users.Commands.CreateUser;
 
 public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateUserResponse>
 {
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public CreateUserHandler(IUserRepository userRepository, IUnitOfWork unitOfWork = null)
+    public CreateUserHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;
         _unitOfWork = unitOfWork;
@@ -23,8 +23,10 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateUserRe
             throw new Exception("Email is already being used.");
 
         var user = CreateUser(command);
+
         await _userRepository.AddAsync(user, cancellationToken);
         await _unitOfWork.CommitAsync(cancellationToken);
+
         return new CreateUserResponse(user.Id);
     }
     private static User CreateUser(CreateUserCommand command)
