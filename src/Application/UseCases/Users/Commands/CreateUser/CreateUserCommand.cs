@@ -10,4 +10,5 @@ public sealed record CreateUserCommand : IRequest<CreateUserResponse>
     public string Email { get; init; } = null!;
     public string IDD { get; init; } = null!;
     public string Phone { get; init; } = null!;
+    public string Password { get; init; } = null!;
 }

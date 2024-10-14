@@ -8,6 +8,9 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Duende.AccessTokenManagement" Version="2.1.2" />
+		<PackageReference Include="JWT" Version="10.1.1" />
+		<PackageReference Include="Keycloak.AuthServices.Sdk" Version="2.4.1" />		
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
 			<PrivateAssets>all</PrivateAssets>

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Users.Domain.Aggregates.UserAggregate;
 using Users.Infrastructure.EntityFramework;
+using Users.Infrastructure.Keycloak;
 using Users.Infrastructure.Persistence.Repositories.Users;
 
 namespace Users.Infrastructure;
@@ -14,6 +15,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddEFCore(configuration);
+        services.AddKeycloak(configuration);
         return services;
     }
 }

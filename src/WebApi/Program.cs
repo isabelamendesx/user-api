@@ -1,7 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using Users.Application;
 using Users.Infrastructure;
-using Users.Infrastructure.EntityFramework.Context;
 
 namespace WebApi;
 
